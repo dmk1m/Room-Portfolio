@@ -19,6 +19,7 @@ export default class ProjectDialog {
     this.title = this.dialog.querySelector('.project-details-title');
     this.badges = this.dialog.querySelector('.project-details-badges');
     this.description = this.dialog.querySelector('.project-details-description');
+    this.highlights = this.dialog.querySelector('.project-details-highlights');
     this.iconsContainer = this.dialog.querySelector('.icons-holder');
     this.sourceLink = this.dialog.querySelector('.project-details-source');
 
@@ -151,7 +152,14 @@ export default class ProjectDialog {
   renderInfo(project, index) {
     this.index.textContent = String(index + 1).padStart(2, '0');
     this.title.textContent = project.title;
-    this.description.textContent = project.detailedDescription;
+    this.description.textContent = project.summary;
+    this.highlights.replaceChildren(
+      ...project.highlights.map((text) => {
+        const item = document.createElement('li');
+        item.textContent = text;
+        return item;
+      })
+    );
 
     this.badges.replaceChildren(
       ...project.badges.map((badge) => {

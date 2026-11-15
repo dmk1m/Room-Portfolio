@@ -6,7 +6,7 @@ export default class ProjectManager {
       {
         title: "My Room Portfolio",
         description:
-          "My bedroom, modeled in Blender and rendered live in your browser with Three.js. You're scrolling through it right now.",
+          "My bedroom, rebuilt in Blender and rendered live in your browser. You're scrolling through it right now.",
         imageUrl: "/pictures/room/room.png",
         link: "https://github.com/dmk1m/Room-Portfolio",
         icons: [
@@ -65,12 +65,20 @@ export default class ProjectManager {
           "/pictures/room/irl.webp",
           "/pictures/room/blender.webp",
         ],
-        detailedDescription: `I modeled my bedroom in Blender, compressed the scene with Draco and load it into Three.js, rendered through an orthographic camera. GSAP and ScrollTrigger drive the intro and the scroll-linked camera moves, Lenis handles smooth scrolling, and the laptop on the bed plays a recording of my Live Messenger app as a video texture. The site runs in Docker behind Nginx and Cloudflare. Inspired by the work of Boko33.`
+        summary:
+          "An interactive portfolio set inside a 3D model of my bedroom. I modeled the room in Blender and built the site around it, so the camera and furniture move as you scroll.",
+        highlights: [
+          "Modeled every object in Blender and compressed the scene to under 900 KB with Draco and WebP textures",
+          "Scroll-driven camera and object animations with GSAP ScrollTrigger and Lenis smooth scrolling",
+          "The laptop on the bed plays a recording of my Live Messenger app as a video texture",
+          "Loading screen with real progress, a WebGL fallback and reduced-motion support",
+          "Deployed with Docker and Nginx behind Cloudflare; inspired by the work of Boko33",
+        ]
       },
       {
         title: "Live Messenger",
         description:
-          "Real-time chat built with Next.js, Pusher and MongoDB, with Google and GitHub sign-in.",
+          "A real-time chat app with instant delivery, read receipts and Google or GitHub sign-in.",
         imageUrl: "/pictures/messenger/animation.mp4",
         link: "https://github.com/dmk1m/live-messenger-nextjs",
         icons: [
@@ -149,12 +157,21 @@ export default class ProjectManager {
           "/pictures/messenger/home_view.png",
           "/pictures/messenger/login_demo.png",
         ],
-        detailedDescription: `A full-stack messaging app built with Next.js, using both server-side and client-side rendering. Users sign in with JWT-based authentication or with Google and GitHub, and messages arrive instantly through Pusher. Data lives in MongoDB through Prisma, which was my first time working with a document database. Features include chat management, “seen by” read receipts and light/dark mode, styled with Tailwind CSS and deployed with Docker.`
+        summary:
+          "A full-stack messaging app built with Next.js, where messages show up instantly for everyone in the chat. It was also my first project with a document database.",
+        highlights: [
+          "Real-time messages and “seen by” read receipts powered by Pusher",
+          "Sign-in with JWT authentication or Google and GitHub OAuth",
+          "MongoDB data layer accessed through Prisma",
+          "Server- and client-side rendering with Next.js",
+          "Chat management and light/dark mode, styled with Tailwind CSS",
+          "Containerized and deployed with Docker",
+        ]
       },
       {
         title: "Password Manager",
         description:
-          "Encryptor 2.0: a desktop app, Chrome extension and Flask API for storing passwords, with AES encryption and 2FA.",
+          "Encryptor 2.0: a desktop app and Chrome extension for your passwords, backed by an encrypted API with 2FA.",
         imageUrl: "/pictures/password_manager/animation.mp4",
         link: "https://github.com/dmk1m/passwordmanager",
         icons: [
@@ -234,12 +251,20 @@ export default class ProjectManager {
           "/pictures/password_manager/animation2.mp4",
           "/pictures/password_manager/home_view.png",
         ],
-        detailedDescription: `Encryptor 2.0 stores, manages and generates strong passwords. It has three parts: a native desktop app built with C# and Avalonia, a Chrome extension for filling in logins in the browser, and a Flask API that handles authentication and encryption. All user data is AES-encrypted, passwords are hashed with bcrypt and scrypt before reaching MySQL, and accounts are protected with TOTP two-factor login. Redis caches frequent requests. The backend runs in Docker on an Ubuntu server behind Nginx, with Cloudflare DNS and TLS.`
+        summary:
+          "Encryptor 2.0 stores, generates and fills in strong passwords. A native desktop app and a Chrome extension share one secure backend.",
+        highlights: [
+          "Desktop app built with C# and Avalonia, plus a Chrome extension for filling in logins",
+          "Flask API that handles authentication, data processing and encryption",
+          "All user data AES-encrypted; passwords hashed with bcrypt and scrypt before reaching MySQL",
+          "TOTP two-factor login and Redis caching for frequent requests",
+          "Runs in Docker on an Ubuntu server behind Nginx, with Cloudflare DNS and TLS",
+        ]
       },
       {
         title: "Blackjack Game",
         description:
-          "Blackjack in the terminal, written in Java, with cards drawn as ASCII art from real card images.",
+          "Blackjack in the terminal, with real playing cards redrawn as ASCII art.",
         imageUrl: "/pictures/blackjack/home_view.mp4",
         link: "https://github.com/dmk1m/blackjack-console-game",
         icons: [
@@ -298,7 +323,14 @@ export default class ProjectManager {
           "/pictures/blackjack/bets_stage.png",
           "/pictures/blackjack/playing_stage.png",
         ],
-        detailedDescription: `A Java console game that makes blackjack feel close to a GUI. Card images are converted to ASCII art and overlapped on screen like a real hand, with the player's info and the table shown in side-by-side panels. The code follows object-oriented design and SOLID principles, every controller is covered by JUnit tests, and the project builds with Maven.`
+        summary:
+          "A Java console game that makes blackjack feel close to a graphical app without ever leaving the terminal.",
+        highlights: [
+          "Converts card images to ASCII art and overlaps them like a real hand",
+          "Side-by-side panels for the player's info and the game table",
+          "Object-oriented design following SOLID principles",
+          "Every controller covered by JUnit tests; built with Maven",
+        ]
       },
       {
         title: "SpaceEra",
@@ -366,7 +398,14 @@ export default class ProjectManager {
           "/pictures/spaceera/blender.webp",
           "/pictures/spaceera/moon.webp",
         ],
-        detailedDescription: `SpaceEra is a front-end concept for booking intergalactic trips, built with HTML, CSS and JavaScript as my final project for a web development course. Each destination is a rotating 3D planet that I modeled in Blender. The site also has a ticket price calculator, a login page and light/dark mode.`
+        summary:
+          "A front-end concept for booking intergalactic trips, built as my final project for a web development course.",
+        highlights: [
+          "Rotating 3D planets, each one modeled in Blender",
+          "Ticket price calculator for every destination",
+          "Login page and light/dark mode",
+          "Built with plain HTML, CSS and JavaScript",
+        ]
       },
     ];
     this.createProjects();

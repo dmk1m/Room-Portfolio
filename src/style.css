@@ -11,6 +11,16 @@ body {
   overflow-x: clip;
 }
 
+/* Hide the page scrollbar (scrolling still works; each section has its own
+   progress bar). Firefox uses scrollbar-width, other browsers the pseudo-element. */
+html {
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
 :root {
   --text-black: #333332;
   --primary-color: #a79277;
@@ -772,9 +782,35 @@ body {
 }
 
 .project-details-description {
-  font-size: 16px;
-  line-height: 1.7;
-  color: rgba(51, 51, 50, 0.88);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--text-black);
+}
+
+.project-details-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  list-style: none;
+}
+
+.project-details-highlights li {
+  position: relative;
+  padding-left: 1.25rem;
+  font-size: 15px;
+  line-height: 1.55;
+  color: rgba(51, 51, 50, 0.85);
+}
+
+.project-details-highlights li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--blue-secondary);
 }
 
 .icons-container h3 {
