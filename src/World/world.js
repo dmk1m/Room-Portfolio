@@ -1,17 +1,13 @@
 import EventEmitter from 'events';
-import Experience from '../Experience/experience';
-import Environment from './environment';
-import Floor from './floor';
-import Room from './room';
+import Experience from '../Experience/experience.js';
+import Environment from './environment.js';
+import Floor from './floor.js';
+import Room from './room.js';
 
 export default class World extends EventEmitter {
   constructor() {
     super();
     this.experience = new Experience();
-    this.sizes = this.experience.sizes;
-    this.scene = this.experience.scene;
-    this.canvas = this.experience.canvas;
-    this.camera = this.experience.camera;
     this.resources = this.experience.resources;
 
     this.resources.on('ready', () => {
@@ -22,14 +18,7 @@ export default class World extends EventEmitter {
     });
   }
 
-  resize() { }
-
   update() {
-    if (this.room) {
-      this.room.update();
-    }
-    if (this.controls) {
-      this.controls.update();
-    }
+    this.room?.update();
   }
 }

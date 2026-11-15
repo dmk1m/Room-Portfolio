@@ -1,6 +1,6 @@
-import Experience from '../Experience/experience';
 import * as THREE from 'three';
 import GSAP from 'gsap';
+import Experience from '../Experience/experience.js';
 
 export default class Room {
   constructor() {
@@ -51,7 +51,6 @@ export default class Room {
 
   setModel() {
     // Monitor
-
     this.roomChildren.monitor.children[1].material =
       new THREE.MeshBasicMaterial({
         map: this.resources.items.screen,
@@ -75,8 +74,6 @@ export default class Room {
 
     this.scene.add(this.actualRoom);
   }
-
-  resize() {}
 
   update() {
     this.lerp.current = GSAP.utils.interpolate(

@@ -1,5 +1,5 @@
 {
-  "name": "vite-project",
+  "name": "room-portfolio",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,9 +9,9 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@ashthornton/asscroll": "^2.0.11",
     "events": "^3.3.0",
     "gsap": "^3.12.7",
+    "lenis": "^1.3.27",
     "three": "^0.172.0",
     "vite": "^6.0.5"
   }

@@ -9,11 +9,8 @@ html,
 body {
   font-family: 'Montserrat', sans-serif;
   color: var(--text-black);
+  overflow-x: clip;
 }
-
-/* body{
-  overflow: hidden;
-} */
 
 :root {
   --text-black: #333332;
@@ -46,8 +43,7 @@ body {
 
 .experience {
   position: fixed;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
 }
 
 .experience-canvas {
@@ -331,7 +327,7 @@ body {
 
 /* Hero section ------------------*/
 .hero {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
 }
 
@@ -367,6 +363,12 @@ body {
 .hero-second-subheading {
   font-size: 32px;
   text-transform: uppercase;
+}
+
+/* Keep hero text readable where it overlaps the 3D room */
+.hero-main,
+.hero-second {
+  text-shadow: 0 0 8px var(--quaternary-color), 0 0 2px var(--quaternary-color);
 }
 
 .first-section {
@@ -489,7 +491,8 @@ body {
 .project-overview:hover {
   transform: scale(1.03);
 }
-.project img {
+.project img,
+.project video {
   position: relative;
   width: 100%;
   height: 100%;
@@ -540,8 +543,7 @@ body {
   display: none;
   padding: 3%;
   position: fixed;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
   z-index: 99996;
   gap: 1.5rem;
   background-color: rgba(0, 0, 0, 0.2);
@@ -574,17 +576,35 @@ body {
   padding-bottom: 0.65rem;
   border-bottom: 1px solid rgb(255, 255, 255, 0.8);
 }
-.info-header svg {
+.close-button {
+  display: flex;
+  padding: 0.25rem;
+  border: none;
+  background: none;
   cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.close-button svg {
   height: 1.5rem;
   width: 1.5rem;
   fill: white;
-  opacity: 0.5;
-  transition: all 0.1s ease-in-out;
 }
 
-.info-header svg:hover {
+.close-button:hover,
+.close-button:focus-visible {
   opacity: 1;
+}
+
+.project-details-link {
+  color: #4f3466;
+}
+
+.project-overview:focus-visible,
+.close-button:focus-visible {
+  outline: 2px solid var(--blue-primary);
+  outline-offset: 3px;
 }
 
 .icons-container {
@@ -677,7 +697,8 @@ ul.slides input {
   color: rgba(255, 255, 255, 0.9);
   margin: 0;
 }
-.slide-image img {
+.slide-image img,
+.slide-image video {
   width: auto;
   min-width: 100%;
   height: 100%;
@@ -933,9 +954,9 @@ input:checked + .slide-container .nav label {
   text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
 }
 
-.wrapper .facebook:hover,
-.wrapper .facebook:hover .tooltip,
-.wrapper .facebook:hover .tooltip::before {
+.wrapper .code:hover,
+.wrapper .code:hover .tooltip,
+.wrapper .code:hover .tooltip::before {
   background: var(--tertiary-color);
   color: var(--text-black);
 }
@@ -947,18 +968,18 @@ input:checked + .slide-container .nav label {
   color: var(--text-black);
 }
 
-.wrapper .facebook:hover .contact-svg {
+.wrapper .code:hover .contact-svg {
   fill: white;
 }
 
-.wrapper .twitter:hover,
-.wrapper .twitter:hover .tooltip,
-.wrapper .twitter:hover .tooltip::before {
+.wrapper .linkedin:hover,
+.wrapper .linkedin:hover .tooltip,
+.wrapper .linkedin:hover .tooltip::before {
   background: var(--tertiary-color);
   color: var(--text-black);
 }
 
-.wrapper .twitter:hover .contact-svg {
+.wrapper .linkedin:hover .contact-svg {
   fill: white;
 }
 

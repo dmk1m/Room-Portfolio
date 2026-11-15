@@ -13,31 +13,36 @@ This portfolio website is inspired by the work of Boko33. I started by 3D modeli
 [Go to Web Demo (Render Server)](https://room-portfolio-0tlu.onrender.com)
 
 
-## Goals
+## Features
 
-### Achieved
-- [x] 3D model my room in blender 
-- [x] Import my assets into Three.js
-- [x] Setup the scene
-- [x] Setup the light
-- [x] Setup perspective and orthographic cameras
-- [x] About me, my work, contact me page
+- [x] 3D model of my room in Blender
+- [x] Assets imported into Three.js
+- [x] Scene, lighting and orthographic camera setup
+- [x] About me, my work and contact sections
 - [x] Smooth scrolling
-- [x] Intro animation
+- [x] Intro animation and loader
 - [x] Custom progress bar
 - [x] Dialog boxes for each project
-
-### Unimplemented
-- [x] Loader
 - [x] Mobile styling
 
 ## Used Libraries and Frameworks
 
-[**ThreeJs**](https://threejs.org/):  is a cross-browser JavaScript library and application programming interface (API) used to create and display animated 3D computer graphics in a web browser using WebGL.
+[**Three.js**](https://threejs.org/): a cross-browser JavaScript library and API used to create and display animated 3D computer graphics in a web browser using WebGL.
 
-[**Blender**](https://www.blender.org/):  is a free and open-source 3D computer graphics software tool set that runs on Windows, macOS, BSD, Haiku, IRIX and Linux.
+[**Blender**](https://www.blender.org/): a free and open-source 3D computer graphics tool set used to model the room.
 
-[**GSAP**](https://gsap.com/):  is a free and open-source 3D computer graphics software tool set that runs on Windows, macOS, BSD, Haiku, IRIX and Linux.
+[**GSAP**](https://gsap.com/): a JavaScript animation library used for the intro and scroll-driven animations (with ScrollTrigger).
+
+[**Lenis**](https://lenis.darkroom.engineering/): a lightweight smooth-scrolling library.
+
+## Running Locally
+
+```bash
+npm install
+npm run dev
+```
+
+Build for production with `npm run build` and preview the build with `npm run preview`.
 
 ## Screenshots
 
