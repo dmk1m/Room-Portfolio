@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/screenshots/pfp.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dmitriy Kim | Portfolio</title>
+  <meta name="description" content="Portfolio of Dmitriy Kim, a Computer Science student at Dawson College" />
+  <meta name="keywords" content="Dmitriy Kim, Software Developer, Full Stack, Portfolio, Dawson College, Web Development, JavaScript, MongoDB, 3D Website, Computer Science" />
+  <meta name="author" content="Dmitriy Kim" />
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dmitriykim.ca/" /> <meta property="og:title" content="Room Portfolio | Dmitriy Kim - Software Developer" />
+  <meta property="og:description" content="Explore the interactive portfolio of Dmitriy Kim, featuring full-stack projects and 3D web design." />
+  <meta property="og:image" content="https://dmitriykim.ca/pictures/room/room.png" /> <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://dmitriykim.ca/" /> <meta property="twitter:title" content="Room Portfolio | Dmitriy Kim" />
+  <meta property="twitter:description" content="Computer Science student at Dawson College & Full Stack Developer." />
+  <meta property="twitter:image" content="https://dmitriykim.ca/pictures/room/room.png" />
+</head>
+
+<body>
+  <div class="experience">
+      <canvas class="experience-canvas"></canvas>
+  </div>
+
+  <div class="page-dialog">
+  <!--Project dialog slider-->
+  <div class="project-dialog">
+    <!-- Project image previes carousel -->
+    <div class="project-carousel">
+        <div class="carousel">
+          <ul class="slides">
+            <!-- Slide 1 -->
+            <input type="radio" name="radio-buttons" id="img-1" checked />
+            <li class="slide-container">
+              <div class="slide-image">
+                <div class="image-desc">
+                  <div class="text-info">
+                    <h2>First Page</h2>
+                    <p>Very Beatiful page</p>
+                  </div>
+                </div>
+                <img class="details-image"  src="/pictures/messenger/home_view.png">
+              </div>
+            </li>
+
+            <!-- Slide 2 -->
+            <input type="radio" name="radio-buttons" id="img-2" />
+            <li class="slide-container">
+              <div class="slide-image">
+                <div class="image-desc">
+                  <div class="text-info">
+                    <h2>Second Page</h2>
+                    <p>Even More Beautiful Page</p>
+                  </div>
+                </div>
+                <img class="details-image" src="/pictures/messenger/login_demo.png">
+              </div>
+            </li>
+
+            <!-- Slide 3 -->
+            <input type="radio" name="radio-buttons" id="img-3" />
+            <li class="slide-container">
+              <div class="slide-image">
+                <div class="image-desc">
+                  <div class="text-info">
+                    <h2>Third Page</h2>
+                    <p>Ugly Page (I hate it)</p>
+                  </div>
+                </div>
+                <img class="details-image"  src="/pictures/messenger/network.png">
+              </div>
+            </li>
+
+            <div class="carousel-dots">
+              <label for="img-1" class="carousel-dot" id="img-dot-1"></label>
+              <label for="img-2" class="carousel-dot" id="img-dot-2"></label>
+              <label for="img-3" class="carousel-dot" id="img-dot-3"></label>
+            </div>
+
+          </ul>
+        </div>
+    </div>
+
+    <!-- Project info -->
+    <div class="project-info">
+
+      <div class="info-header">
+        <h1 class="project-details-title">Projet 1</h1>
+        <svg class="close-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z"/></svg>
+      </div>
+
+      <p class="project-details-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae unde exercitationem
+        corporis iusto ipsum labore sapiente culpa porro nobis, repudiandae assumenda accusantium tenetur incidunt
+        tempore quis. Cumque maxime nobis quidem.</p>
+
+      <div class="icons-container">
+        <h3>Technologies</h3>
+        <div class="icons-holder">
+         
+        </div>
+      </div>
+    
+    </div>
+  </div>
+
+  <div class="page" asscroll-container>
+
+    <!-- <div class="toggle-bar">
+      <div class="sun-wrapper">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M440-800v-120h80v120h-80Zm0 760v-120h80v120h-80Zm360-400v-80h120v80H800Zm-760 0v-80h120v80H40Zm708-252-56-56 70-72 58 58-72 70ZM198-140l-58-58 72-70 56 56-70 72Zm564 0-70-72 56-56 72 70-58 58ZM212-692l-72-70 58-58 70 72-56 56Zm268 452q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Zm0-80q67 0 113.5-46.5T640-480q0-67-46.5-113.5T480-640q-67 0-113.5 46.5T320-480q0 67 46.5 113.5T480-320Zm0-160Z"/></svg>
+      </div>
+      <button class="toggle-button">
+        <div class="toggle-circle">
+
+        </div>
+      </button>
+      <div class="moon-wrapper">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Zm0-80q88 0 158-48.5T740-375q-20 5-40 8t-40 3q-123 0-209.5-86.5T364-660q0-20 3-40t8-40q-78 32-126.5 102T200-480q0 116 82 198t198 82Zm-10-270Z"/></svg>
+      </div>
+    </div> -->
+
+    <div class="page-wrapper" asscroll>
+      <section class="hero">
+        <div class="hero-wrapper">
+
+
+          <div class="intro-text">
+            Hi, I'm Dmitriy
+          </div>
+          <div class="arrow-svg-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#333332"><path d="M480-344 240-584l43-43 197 197 197-197 43 43-240 240Z"/></svg>
+          </div>
+
+          <div class="hero-main">
+            <h1 class="hero-main-title">
+              Dmitriy Kim
+            </h1>
+            <p class="hero-main-description">
+              Software Developer
+            </p>
+          </div>
+
+          <div class="hero-second">
+            <p class="hero-second-subheading first-sub">
+              Welcome
+            </p>
+            <p class="hero-second-subheading second-sub">
+              <!-- Inspired by boko33 -->
+               to my portfolio
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <div class="section-margin first-move"></div>
+
+      <section class="first-section section right">
+
+        <div class="progress-wrapper progress-bar-wrapper-right">
+          <div class="progress-bar">
+            
+          </div>
+        </div>
+
+
+        <div class="section-intro-wrapper gren-text gren-border">
+          <h1 class="section-title gren-text gren-border">
+            <span class="section-title-text gren-text">
+              About Me
+            </span>
+            <div class="section-title-decoration s1 gren-border"></div>
+            <div class="section-title-decoration s2 gren-border"></div>
+            <div class="section-title-decoration s3 gren-background gren-border"></div>
+          </h1>
+          <span class="section-number gren-text">01</span>
+        </div>
+
+        <div class="section-detail-wrapper">
+          <div class="pfp-container">
+            <img class="pfp-image" src="/pictures/personal/aside.jpg" width="240px" height="240px" alt="Dmitriy Kim">
+          </div>
+          <h3 class="section-heading title-header-gren">1. Who I Am</h3>
+          <p class="section-text">
+            I'm Dmitriy Kim, a third-year Computer Science student at Dawson College.
+I like to take ideas and turn them into functional solutions.
+
+          </p>
+          <h3 class="section-heading title-header-gren">2. What I Do</h3>
+          <p class="section-text">
+            My work focuses on full-stack web development. I’ve built projects using JavaScript, MongoDB, and many more,
+          specializing in responsive design, backend development,
+          and browser optimization.
+
+          </p>
+          <h3 class="section-heading title-header-gren">3. What Drives Me</h3>
+          <p class="section-text">
+            I’m driven by a passion to learn and a desire to make technology accessible and impactful.
+            My long-term goal is to contribute to projects that solve real-world problems and motivate others.
+          </p>
+        </div>
+
+      </section>
+
+
+
+      <div class="section-margin second-move"></div>
+
+
+      <section class="second-section section left">
+
+        <div class="progress-wrapper progress-bar-wrapper-left">
+          <div class="progress-bar blue-background">
+            
+          </div>
+        </div>
+
+        <div class="section-intro-wrapper blue-text blue-border">
+          <h1 class="section-title blue-text blue-border">
+            <span class="section-title-text blue-text">
+              My Work
+            </span>
+            <div class="section-title-decoration s1 blue-border">
+              
+            </div>
+            <div class="section-title-decoration s2 blue-border"></div>
+            <div class="section-title-decoration s3 blue-background blue-border"></div>
+          </h1>
+          <span class="section-number blue-text">02</span>
+        </div>
+
+        <!--PROJECT SECTION-->
+        <div class="section-detail-wrapper project-holder">
+
+          
+        </div>
+
+
+
+      </section>
+
+      <div class="section-margin third-move"></div>
+
+      <section class="third-section section right">
+
+        <div class="progress-wrapper progress-bar-wrapper-right">
+          <div class="progress-bar green-background">
+
+          </div>
+        </div>
+
+        <div class="section-intro-wrapper green-text green-border">
+          <h1 class="section-title green-text green-border">
+            <span class="section-title-text green-text">
+              Contact Me
+            </span>
+            <div class="section-title-decoration s1 green-border"></div>
+            <div class="section-title-decoration s2 green-border"></div>
+            <div class="section-title-decoration s3 green-background green-border"></div>
+          </h1>
+          <span class="section-number">03</span>
+        </div>
+
+        <div class="section-detail-wrapper">
+          <div>
+            <h3 class="section-heading">Let’s Connect!</h3>
+            <p class="section-text">I’m always excited to collaborate on new projects, 
+              share ideas, or answer any questions you may have. Feel free to reach out via 
+              email or connect with me on the contacts specified below. 
+              I’ll get back to you as soon as possible!</p>
+          </div>
+          <ul class="wrapper">
+            <li class="icon facebook">
+              <span class="tooltip">Gitlab</span>
+              <a href="https://gitlab.com/DmitriyKim01" target="_blank">
+              <svg width="40px" height="40px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;" fill="#4f3466"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <rect id="Icons" x="0" y="-192" width="1280" height="800" style="fill:none;"></rect> <g id="Icons1" serif:id="Icons"> <g id="Strike"> </g> <g id="H1"> </g> <g id="H2"> </g> <g id="H3"> </g> <g id="list-ul"> </g> <g id="hamburger-1"> </g> <g id="hamburger-2"> </g> <g id="list-ol"> </g> <g id="list-task"> </g> <g id="trash"> </g> <g id="vertical-menu"> </g> <g id="horizontal-menu"> </g> <g id="sidebar-2"> </g> <g id="Pen"> </g> <g id="Pen1" serif:id="Pen"> </g> <g id="clock"> </g> <g id="external-link"> </g> <g id="hr"> </g> <g id="info"> </g> <g id="warning"> </g> <g id="plus-circle"> </g> <g id="minus-circle"> </g> <g id="vue"> </g> <g id="cog"> </g> <path id="github" d="M32.029,8.345c-13.27,0 -24.029,10.759 -24.029,24.033c0,10.617 6.885,19.624 16.435,22.803c1.202,0.22 1.64,-0.522 1.64,-1.16c0,-0.569 -0.02,-2.081 -0.032,-4.086c-6.685,1.452 -8.095,-3.222 -8.095,-3.222c-1.093,-2.775 -2.669,-3.514 -2.669,-3.514c-2.182,-1.492 0.165,-1.462 0.165,-1.462c2.412,0.171 3.681,2.477 3.681,2.477c2.144,3.672 5.625,2.611 6.994,1.997c0.219,-1.553 0.838,-2.612 1.526,-3.213c-5.336,-0.606 -10.947,-2.669 -10.947,-11.877c0,-2.623 0.937,-4.769 2.474,-6.449c-0.247,-0.608 -1.072,-3.051 0.235,-6.36c0,0 2.018,-0.646 6.609,2.464c1.917,-0.533 3.973,-0.8 6.016,-0.809c2.041,0.009 4.097,0.276 6.017,0.809c4.588,-3.11 6.602,-2.464 6.602,-2.464c1.311,3.309 0.486,5.752 0.239,6.36c1.54,1.68 2.471,3.826 2.471,6.449c0,9.232 -5.62,11.263 -10.974,11.858c0.864,0.742 1.632,2.208 1.632,4.451c0,3.212 -0.029,5.804 -0.029,6.591c0,0.644 0.432,1.392 1.652,1.157c9.542,-3.185 16.421,-12.186 16.421,-22.8c0,-13.274 -10.76,-24.033 -24.034,-24.033" style="fill:#4f3466;"></path> <g id="logo"> </g> <g id="radio-check"> </g> <g id="eye-slash"> </g> <g id="eye"> </g> <g id="toggle-off"> </g> <g id="shredder"> </g> <g id="spinner--loading--dots-" serif:id="spinner [loading, dots]"> </g> <g id="react"> </g> <g id="check-selected"> </g> <g id="turn-off"> </g> <g id="code-block"> </g> <g id="user"> </g> <g id="coffee-bean"> </g> <g id="coffee-beans"> <g id="coffee-bean1" serif:id="coffee-bean"> </g> </g> <g id="coffee-bean-filled"> </g> <g id="coffee-beans-filled"> <g id="coffee-bean2" serif:id="coffee-bean"> </g> </g> <g id="clipboard"> </g> <g id="clipboard-paste"> </g> <g id="clipboard-copy"> </g> <g id="Layer1"> </g> </g> </g></svg>
+              </a>
+            </li>
+            <li class="icon twitter">
+              <span class="tooltip">LinkedIn</span>
+              <a href="https://www.linkedin.com/in/dmitriy-kim-1999b3339/" target="_blank">
+                <svg fill="#4f3466" width="40px" height="40px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>linkedin</title> <path d="M28.778 1.004h-25.56c-0.008-0-0.017-0-0.027-0-1.199 0-2.172 0.964-2.186 2.159v25.672c0.014 1.196 0.987 2.161 2.186 2.161 0.010 0 0.019-0 0.029-0h25.555c0.008 0 0.018 0 0.028 0 1.2 0 2.175-0.963 2.194-2.159l0-0.002v-25.67c-0.019-1.197-0.994-2.161-2.195-2.161-0.010 0-0.019 0-0.029 0h0.001zM9.9 26.562h-4.454v-14.311h4.454zM7.674 10.293c-1.425 0-2.579-1.155-2.579-2.579s1.155-2.579 2.579-2.579c1.424 0 2.579 1.154 2.579 2.578v0c0 0.001 0 0.002 0 0.004 0 1.423-1.154 2.577-2.577 2.577-0.001 0-0.002 0-0.003 0h0zM26.556 26.562h-4.441v-6.959c0-1.66-0.034-3.795-2.314-3.795-2.316 0-2.669 1.806-2.669 3.673v7.082h-4.441v-14.311h4.266v1.951h0.058c0.828-1.395 2.326-2.315 4.039-2.315 0.061 0 0.121 0.001 0.181 0.003l-0.009-0c4.5 0 5.332 2.962 5.332 6.817v7.855z"></path> </g></svg>
+              </a>
+            </li>
+            <li class="icon resume">
+              <span class="tooltip">Resume</span>
+              <a href="/pictures/personal/dmitriykim_cv.pdf" target="_blank">
+                <svg height="40px" width="40px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="#4f3466"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <style type="text/css"> .st0{fill:#4f3466;} </style> <g> <path class="st0" d="M276.239,252.183c-6.37,2.127-13.165,3.308-20.239,3.308c-7.074,0-13.87-1.181-20.24-3.308 c-46.272,7.599-70.489,41.608-70.489,82.877H256h90.728C346.728,293.791,322.515,259.782,276.239,252.183z"></path> <path class="st0" d="M256,240.788c27.43,0,49.658-22.24,49.658-49.666v-14.087c0-27.426-22.228-49.659-49.658-49.659 c-27.43,0-49.658,22.233-49.658,49.659v14.087C206.342,218.548,228.57,240.788,256,240.788z"></path> <path class="st0" d="M378.4,0H133.582C86.234,0,47.7,38.542,47.7,85.899v340.22C47.7,473.476,86.234,512,133.582,512h205.695 h13.175l9.318-9.301l93.229-93.229l9.301-9.31v-13.174V85.899C464.3,38.542,425.766,0,378.4,0z M432.497,386.985H384.35 c-24.882,0-45.074,20.183-45.074,45.073v48.139H133.582c-29.866,0-54.078-24.221-54.078-54.078V85.899 c0-29.874,24.212-54.096,54.078-54.096H378.4c29.876,0,54.096,24.222,54.096,54.096V386.985z"></path> </g> </g></svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </section>
+
+    </div>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+
+
+</html>
