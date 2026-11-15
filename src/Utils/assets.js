@@ -1,3 +1,5 @@
+// Video textures can take an optional `poster` image (first frame of the
+// video) that's shown on the screen until the video itself has loaded.
 export default [
   {
     name: 'room',
@@ -7,11 +9,13 @@ export default [
   {
     name: 'screen',
     type: 'videoTexture',
-    path: '/textures/rampage.mp4',
+    path: '/textures/rampage.min.mp4',
+    poster: '/textures/rampage.jpg',
   },
   {
     name: 'messenger',
     type: 'videoTexture',
-    path: '/textures/messenger.mp4',
+    path: '/textures/messenger.min.mp4',
+    poster: '/textures/messenger.jpg',
   },
 ];

@@ -3,14 +3,19 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 import 'lenis/dist/lenis.css';
 import Experience from '../Experience/experience.js';
+import { prefersReducedMotion } from '../Utils/motion.js';
 import { DESKTOP_QUERY, MOBILE_QUERY } from '../Utils/size.js';
 
 GSAP.registerPlugin(ScrollTrigger);
 
+// With reduced motion, scroll-linked animations follow the scrollbar exactly
+// instead of easing behind it.
+const SCRUB = prefersReducedMotion() ? true : 0.6;
+
 /** A scrubbed timeline that plays while `trigger` scrolls through the viewport. */
 function scrubTimeline(trigger, { start = 'top top', end = 'bottom bottom' } = {}) {
   return GSAP.timeline({
-    scrollTrigger: { trigger, start, end, scrub: 0.6, invalidateOnRefresh: true },
+    scrollTrigger: { trigger, start, end, scrub: SCRUB, invalidateOnRefresh: true },
   });
 }
 
@@ -29,7 +34,7 @@ export default class Controls {
     this.roomChildren = this.experience.world.room.roomChildren;
 
     document.querySelector('.page').style.overflow = 'visible';
-    this.setSmoothScroll();
+    if (!prefersReducedMotion()) this.setSmoothScroll();
     this.setScrollTrigger();
   }
 
@@ -116,7 +121,7 @@ export default class Controls {
       // Round the section's inner corners as it enters and leaves
       GSAP.to(section, {
         [`borderTop${side}Radius`]: 10,
-        scrollTrigger: { trigger: section, start: 'top bottom', end: 'top top', scrub: 0.6 },
+        scrollTrigger: { trigger: section, start: 'top bottom', end: 'top top', scrub: SCRUB },
       });
       GSAP.to(section, {
         [`borderBottom${side}Radius`]: 700,
@@ -124,7 +129,7 @@ export default class Controls {
           trigger: section,
           start: 'bottom bottom',
           end: 'bottom top',
-          scrub: 0.6,
+          scrub: SCRUB,
         },
       });
 

@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import GSAP from 'gsap';
 import Experience from '../Experience/experience.js';
+import { prefersReducedMotion } from '../Utils/motion.js';
 
 export default class Room {
   constructor() {
@@ -19,7 +20,7 @@ export default class Room {
 
     this.setRoomChildren();
     this.setModel();
-    this.onMouseMove();
+    if (!prefersReducedMotion()) this.onMouseMove();
   }
 
   setRoomChildren() {
@@ -50,19 +51,20 @@ export default class Room {
   }
 
   setModel() {
-    // Monitor
-    this.roomChildren.monitor.children[1].material =
-      new THREE.MeshBasicMaterial({
-        map: this.resources.items.screen,
-        side: THREE.DoubleSide,
-      });
+    // Screens: show the poster (or a dark "off" screen) until the video is ready
+    this.screens = {
+      screen: this.createScreenMaterial('screen', { side: THREE.DoubleSide }),
+      messenger: this.createScreenMaterial('messenger'),
+    };
+    this.roomChildren.monitor.children[1].material = this.screens.screen;
+    this.roomChildren.laptop.children[3].material = this.screens.messenger;
 
-    // Laptop
-    this.roomChildren.laptop.children[3].material = new THREE.MeshBasicMaterial(
-      {
-        map: this.resources.items.messenger,
+    this.resources.on('videoReady', (name, texture) => this.showVideo(name, texture));
+    for (const name of Object.keys(this.screens)) {
+      if (this.resources.video[name]?.readyState >= 2) {
+        this.showVideo(name, this.resources.videoTexture[name]);
       }
-    );
+    }
 
     // Outdoors area
     this.roomChildren.outside.position.x = 0.003488;
@@ -73,6 +75,23 @@ export default class Room {
     this.roomChildren.cube.rotation.y = Math.PI / 4;
 
     this.scene.add(this.actualRoom);
+  }
+
+  createScreenMaterial(name, options = {}) {
+    const poster = this.resources.posters[name];
+    return new THREE.MeshBasicMaterial({
+      map: poster ?? null,
+      color: poster ? 0xffffff : 0x111111,
+      ...options,
+    });
+  }
+
+  showVideo(name, texture) {
+    const material = this.screens?.[name];
+    if (!material || material.map === texture) return;
+    material.map = texture;
+    material.color.set(0xffffff);
+    material.needsUpdate = true;
   }
 
   update() {

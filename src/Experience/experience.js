@@ -6,6 +6,7 @@ import Resources from '../Utils/resources.js';
 import World from '../World/world.js';
 import Controls from '../World/controls.js';
 import Camera from './camera.js';
+import Loader from './loader.js';
 import Preloader from './preloader.js';
 import Renderer from './renderer.js';
 
@@ -24,6 +25,7 @@ export default class Experience {
     this.renderer = new Renderer();
     this.resources = new Resources(assets);
     this.world = new World();
+    this.loader = new Loader();
     this.preloader = new Preloader();
     this.time = new Time();
 

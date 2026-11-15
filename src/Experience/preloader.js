@@ -1,6 +1,7 @@
 import EventEmitter from 'events';
 import GSAP from 'gsap';
 import convertToSpan from '../Utils/convertDivsToSpans.js';
+import { prefersReducedMotion } from '../Utils/motion.js';
 import Experience from './experience.js';
 
 /** Scale a room object from 0 up to full size. */
@@ -30,10 +31,9 @@ export default class Preloader extends EventEmitter {
       this.device = device;
     });
 
-    this.world.on('world_ready', () => {
-      this.setAssets();
-      this.playIntro();
-    });
+    this.world.on('world_ready', () => this.setAssets());
+    // Start the intro only after the loading screen has faded out
+    this.experience.loader.on('hidden', () => this.playIntro());
   }
 
   setAssets() {
@@ -54,6 +54,7 @@ export default class Preloader extends EventEmitter {
     return new Promise((resolve) => {
       const c = this.roomChildren;
       this.timeline = GSAP.timeline();
+      if (prefersReducedMotion()) this.timeline.timeScale(3);
       this.timeline
         .to(c.cube.scale, { x: 1.4, y: 1.4, z: 1.4, duration: 0.7, ease: 'back.out(2.5)' })
         // Shift the cube aside to make room for the intro text
@@ -76,6 +77,7 @@ export default class Preloader extends EventEmitter {
     return new Promise((resolve) => {
       const c = this.roomChildren;
       const tl = (this.secondTimeline = GSAP.timeline());
+      if (prefersReducedMotion()) tl.timeScale(3);
 
       // Hide intro text and morph the cube into the room
       tl.to('.intro-text .animatedis', { yPercent: 100, stagger: 0.05, ease: 'back.in(1.2)' })

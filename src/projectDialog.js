@@ -1,20 +1,26 @@
 import gsap from 'gsap';
 import Experience from './Experience/experience.js';
-import { createMedia } from './Utils/media.js';
+import { createMedia, releaseMedia } from './Utils/media.js';
 
 export default class ProjectDialog {
   constructor(projects) {
     this.projects = projects;
     this.isOpen = false;
+    this.current = 0;
 
     this.dialog = document.querySelector('.project-dialog');
+    this.panel = this.dialog.querySelector('.project-dialog-panel');
     this.closeButton = this.dialog.querySelector('.close-button');
-    this.projectCarousel = this.dialog.querySelector('.project-carousel');
-    this.projectInfo = this.dialog.querySelector('.project-info');
     this.slidesList = this.dialog.querySelector('.slides');
+    this.dotsContainer = this.dialog.querySelector('.carousel-dots');
+    this.prevButton = this.dialog.querySelector('.carousel-prev');
+    this.nextButton = this.dialog.querySelector('.carousel-next');
+    this.index = this.dialog.querySelector('.project-details-index');
     this.title = this.dialog.querySelector('.project-details-title');
+    this.badges = this.dialog.querySelector('.project-details-badges');
     this.description = this.dialog.querySelector('.project-details-description');
     this.iconsContainer = this.dialog.querySelector('.icons-holder');
+    this.sourceLink = this.dialog.querySelector('.project-details-source');
 
     document.querySelectorAll('.project-link').forEach((link, index) => {
       link.addEventListener('click', (event) => {
@@ -34,6 +40,8 @@ export default class ProjectDialog {
     });
 
     this.closeButton.addEventListener('click', () => this.closeDialog());
+    this.prevButton.addEventListener('click', () => this.showSlide(this.current - 1));
+    this.nextButton.addEventListener('click', () => this.showSlide(this.current + 1));
 
     // Click on the dimmed backdrop closes the dialog
     this.dialog.addEventListener('click', (event) => {
@@ -41,62 +49,119 @@ export default class ProjectDialog {
     });
 
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && this.isOpen) this.closeDialog();
+      if (!this.isOpen) return;
+      if (event.key === 'Escape') this.closeDialog();
+      else if (event.key === 'ArrowLeft') this.showSlide(this.current - 1);
+      else if (event.key === 'ArrowRight') this.showSlide(this.current + 1);
+      else if (event.key === 'Tab') this.trapFocus(event);
     });
+  }
+
+  /** Stop the page behind the dialog from scrolling (with or without Lenis). */
+  lockScroll(locked) {
+    const lenis = Experience.instance?.controls?.lenis;
+    if (lenis) {
+      if (locked) lenis.stop();
+      else lenis.start();
+    } else {
+      document.documentElement.style.overflow = locked ? 'hidden' : '';
+    }
+  }
+
+  /** Keep Tab / Shift+Tab cycling through the dialog's controls while it's open. */
+  trapFocus(event) {
+    const focusable = [
+      ...this.panel.querySelectorAll('button:not([hidden]), a[href], [tabindex]:not([tabindex="-1"])'),
+    ].filter((el) => !el.closest('[hidden]') && el.offsetParent !== null);
+    if (!focusable.length) return;
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    const inside = this.panel.contains(document.activeElement);
+
+    if (event.shiftKey && (document.activeElement === first || !inside)) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && (document.activeElement === last || !inside)) {
+      event.preventDefault();
+      first.focus();
+    }
   }
 
   renderSlides(project) {
+    releaseMedia(this.slidesList);
     this.slidesList.replaceChildren();
-    const dots = document.createElement('div');
-    dots.className = 'carousel-dots';
+    this.dotsContainer.replaceChildren();
 
-    project.slides.forEach((src, i) => {
-      const id = `img-${i + 1}`;
-
-      const input = document.createElement('input');
-      input.type = 'radio';
-      input.name = 'radio-buttons';
-      input.id = id;
-      input.checked = i === 0;
-
+    this.slides = project.slides.map((src, i) => {
       const item = document.createElement('li');
-      item.className = 'slide-container';
-      const wrapper = document.createElement('div');
-      wrapper.className = 'slide-image';
-      wrapper.append(
+      item.className = 'slide';
+      item.setAttribute('aria-roledescription', 'slide');
+      item.setAttribute('aria-label', `${i + 1} of ${project.slides.length}`);
+      item.append(
         createMedia(src, {
           alt: `${project.title} screenshot ${i + 1}`,
           className: 'details-image',
+          lazy: false,
         })
       );
-      item.append(wrapper);
-
-      const dot = document.createElement('label');
-      dot.htmlFor = id;
-      dot.id = `img-dot-${i + 1}`;
-      dot.className = 'carousel-dot';
-      dot.setAttribute('aria-label', `Show image ${i + 1}`);
-      dots.append(dot);
-
-      this.slidesList.append(input, item);
+      this.slidesList.append(item);
+      return item;
     });
 
-    if (project.slides.length > 1) this.slidesList.append(dots);
+    this.dots = project.slides.map((_, i) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'carousel-dot';
+      dot.setAttribute('aria-label', `Show image ${i + 1}`);
+      dot.addEventListener('click', () => this.showSlide(i));
+      this.dotsContainer.append(dot);
+      return dot;
+    });
+
+    const multiple = project.slides.length > 1;
+    this.prevButton.hidden = !multiple;
+    this.nextButton.hidden = !multiple;
+    this.dotsContainer.hidden = !multiple;
+    this.showSlide(0);
   }
 
-  renderInfo(project) {
-    this.title.textContent = project.title;
+  showSlide(index) {
+    if (!this.slides?.length) return;
+    const count = this.slides.length;
+    this.current = (index + count) % count;
 
-    const link = document.createElement('a');
-    link.href = project.link;
-    link.target = '_blank';
-    link.rel = 'noopener noreferrer';
-    link.textContent = 'See more details...';
-    link.className = 'project-details-link';
-    this.description.replaceChildren(
-      project.detailedDescription,
-      document.createElement('br'),
-      link
+    this.slides.forEach((slide, i) => {
+      const active = i === this.current;
+      slide.classList.toggle('is-active', active);
+      slide.setAttribute('aria-hidden', String(!active));
+      // Only the visible slide's video plays
+      const video = slide.querySelector('video');
+      if (video) {
+        if (active && this.isOpen) video.play().catch(() => {});
+        else video.pause();
+      }
+    });
+    this.dots.forEach((dot, i) => {
+      dot.classList.toggle('is-active', i === this.current);
+      dot.setAttribute('aria-current', i === this.current ? 'true' : 'false');
+    });
+  }
+
+  renderInfo(project, index) {
+    this.index.textContent = String(index + 1).padStart(2, '0');
+    this.title.textContent = project.title;
+    this.description.textContent = project.detailedDescription;
+
+    this.badges.replaceChildren(
+      ...project.badges.map((badge) => {
+        const span = document.createElement('span');
+        span.className = 'badge';
+        span.style.backgroundColor = badge.secondary;
+        span.style.borderColor = badge.primary;
+        span.textContent = badge.name;
+        return span;
+      })
     );
 
     this.iconsContainer.replaceChildren(
@@ -112,31 +177,29 @@ export default class ProjectDialog {
         return iconDiv;
       })
     );
+
+    this.sourceLink.href = project.link;
   }
 
   openDialog(index, opener) {
     const project = this.projects[index];
     if (!project) return;
 
-    this.renderSlides(project);
-    this.renderInfo(project);
-
     this.isOpen = true;
     this.opener = opener;
-    new Experience().controls?.lenis?.stop();
+    this.renderSlides(project);
+    this.renderInfo(project, index);
+    this.dialog.querySelector('.project-info').scrollTop = 0;
+    this.lockScroll(true);
 
-    gsap.killTweensOf([this.projectCarousel, this.projectInfo]);
+    gsap.killTweensOf([this.dialog, this.panel]);
     this.dialog.style.display = 'flex';
     this.dialog.setAttribute('aria-hidden', 'false');
+    gsap.fromTo(this.dialog, { opacity: 0 }, { opacity: 1, duration: 0.25, ease: 'power1.out' });
     gsap.fromTo(
-      this.projectCarousel,
-      { y: 600, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.55, ease: 'sine' }
-    );
-    gsap.fromTo(
-      this.projectInfo,
-      { y: -600, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.55, ease: 'sine' }
+      this.panel,
+      { y: 40, scale: 0.97, opacity: 0 },
+      { y: 0, scale: 1, opacity: 1, duration: 0.45, ease: 'power3.out' }
     );
     this.closeButton.focus({ preventScroll: true });
   }
@@ -144,24 +207,19 @@ export default class ProjectDialog {
   closeDialog() {
     if (!this.isOpen) return;
     this.isOpen = false;
-    new Experience().controls?.lenis?.start();
+    this.lockScroll(false);
 
-    gsap.killTweensOf([this.projectCarousel, this.projectInfo]);
-    gsap.to(this.projectCarousel, {
-      y: -600,
+    gsap.killTweensOf([this.dialog, this.panel]);
+    gsap.to(this.panel, { y: 30, scale: 0.98, opacity: 0, duration: 0.25, ease: 'power2.in' });
+    gsap.to(this.dialog, {
       opacity: 0,
-      duration: 0.35,
-      ease: 'power2.inOut',
-    });
-    gsap.to(this.projectInfo, {
-      y: 600,
-      opacity: 0,
-      duration: 0.35,
-      ease: 'power2.inOut',
+      duration: 0.3,
+      ease: 'power1.in',
       onComplete: () => {
         this.dialog.style.display = 'none';
         this.dialog.setAttribute('aria-hidden', 'true');
         // Stop any slide videos from playing in the background
+        releaseMedia(this.slidesList);
         this.slidesList.replaceChildren();
         this.opener?.focus({ preventScroll: true });
       },

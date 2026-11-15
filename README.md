@@ -2,11 +2,11 @@
 
 ## Project Overview
 
-This portfolio website is inspired by the work of Boko33. I started by 3D modeling my room in Blender, focusing on capturing its details. The assets were then imported into the Three.js library, and I used HTML, CSS, and JavaScript to build the website. I added animations using GSAP to make the experience more dynamic and interactive. This project highlights my skills in combining design and coding to create an engaging portfolio.
+My portfolio is a 3D model of my bedroom, built in Blender and rendered live in the browser with Three.js. GSAP and ScrollTrigger drive the intro and the scroll-linked camera moves, Lenis handles smooth scrolling, and the laptop in the room plays a recording of one of my projects as a video texture. Inspired by the work of Boko33.
 
 ## Demo
 
-![App Screenshot](./public/screenshots/welcome.png)
+![App Screenshot](./docs/welcome.png)
 
 [Go to Web Demo (Cloudflare Server)](https://dmitriykim.ca)
 
@@ -48,16 +48,16 @@ Build for production with `npm run build` and preview the build with `npm run pr
 
 ### Welcome View
 
-![App Screenshot](./public/screenshots/welcome.png)
+![App Screenshot](./docs/welcome.png)
 
 ### About Me View
 
-![App Screenshot](./public/screenshots/about.png)
+![App Screenshot](./docs/about.png)
 
 ### My Work
 
-![App Screenshot](./public/screenshots/work.png)
+![App Screenshot](./docs/work.png)
 
 ### Contact
 
-![App Screenshot](./public/screenshots/contact.png)
+![App Screenshot](./docs/contact.png)
