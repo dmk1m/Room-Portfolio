@@ -13,7 +13,7 @@ function popIn(timeline, object, { ease = 'back.out(2)', duration = 0.3, positio
 function revealText(timeline, selector, { stagger = 0.05, position } = {}) {
   return timeline.to(
     `${selector} .animatedis`,
-    { yPercent: -100, stagger, ease: 'back.out(1.5)' },
+    { yPercent: 0, stagger, ease: 'back.out(1.5)' },
     position
   );
 }
@@ -46,6 +46,10 @@ export default class Preloader extends EventEmitter {
     ]) {
       convertToSpan(document.querySelector(selector));
     }
+    // Start every letter one full line below its clipped box. This is set in
+    // percent (not CSS translateY), so it stays correct when the font size
+    // changes on resize; a pixel offset would leave letters stuck out of view.
+    GSAP.set('.animatedis', { yPercent: 100 });
     this.room = this.world.room.actualRoom;
     this.roomChildren = this.world.room.roomChildren;
   }
@@ -64,7 +68,7 @@ export default class Preloader extends EventEmitter {
           duration: 0.7,
         })
         .to('.intro-text .animatedis', {
-          yPercent: -100,
+          yPercent: 0,
           stagger: 0.05,
           ease: 'back.out(1.2)',
           onComplete: resolve,
