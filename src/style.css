@@ -82,7 +82,6 @@ html::-webkit-scrollbar {
 
 .animatedis {
   display: inline-block;
-  transform: translateY(100%);
 }
 
 .intro-text {
